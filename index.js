@@ -14,8 +14,9 @@ function handleFormSubmit(event) {
         gender: gender
     };
 
+    console.log(userInformation)
     // Send JSON directly to the Cloudflare Worker
-    fetch('', {
+    fetch('https://qr-code-generator.qr-code.workers.dev', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
