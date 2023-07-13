@@ -16,7 +16,7 @@ function handleFormSubmit(event) {
 
     console.log(userInformation)
     // Send JSON directly to the Cloudflare Worker
-    fetch('https://qr-code-generator.qr-code.workers.dev', {
+    fetch('', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
