@@ -4,7 +4,14 @@ async function search() {
     const mailingAddressInput = document.getElementById('mailingAddress').value;
 
     const response = await getSearch({});
-   
+    
+    
+    console.log("1")
+    console.log(response)
+    console.log("2")
+    console.log(insuredNameInput)
+    
+    
     const result = prefixSearch(response, insuredNameInput);
     console.log(result);
 
