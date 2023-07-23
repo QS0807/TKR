@@ -116,6 +116,6 @@ function prefixSearch(inputData, searchQuery) {
         }
     }
 
-    return matches;
+    return matches[0];
 }
 
