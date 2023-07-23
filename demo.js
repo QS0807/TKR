@@ -133,11 +133,11 @@ function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
         const mailingAddresses = record.fields["Mailing Address"];
         let matchFound = false;
 
-        if (insuredNames.toLowerCase().startsWith(insuredNameQuery.toLowerCase())) {
+        if (insuredNames.startsWith(insuredNameQuery)) {
             matchFound = true;
         }
 
-        if (mailingAddresses && mailingAddresses.toLowerCase().startsWith(mailingAddressQuery.toLowerCase())) {
+        if (mailingAddresses && mailingAddresses.startsWith(mailingAddressQuery)) {
             matchFound = true;
         }
 
