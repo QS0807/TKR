@@ -6,9 +6,9 @@ async function search() {
     const response = await getSearch({});
     
     
-    console.log("1")
+
     console.log(response)
-    console.log("2")
+
     console.log(insuredNameInput)
     
     
@@ -16,12 +16,17 @@ async function search() {
     console.log(result);
 
     const resultsDiv = document.getElementById('searchResults');
-    resultsDiv.innerHTML = '';
-    results.forEach(result => {
-        const resultItem = document.createElement('div');
-        resultItem.classList.add('result-item');
-        resultItem.textContent = `Name: ${result.name}, Address: ${result.address}`;
-        resultsDiv.appendChild(resultItem);
+    resultsDiv.innerHTML = ''; // clear the current results
+
+    // Iterate over the results and add each one to the resultsDiv
+    result.forEach(item => {
+        // Create a new div for the item and set its textContent to the item
+        const itemDiv = document.createElement('div');
+        itemDiv.textContent = item;
+        itemDiv.classList.add('result-item');
+
+        // Append the itemDiv to the resultsDiv
+        resultsDiv.appendChild(itemDiv);
     });
     
     
