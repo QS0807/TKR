@@ -15,6 +15,14 @@ async function search() {
     const result = prefixSearch(response, insuredNameInput);
     console.log(result);
 
+    const resultsDiv = document.getElementById('searchResults');
+    resultsDiv.innerHTML = '';
+    results.forEach(result => {
+        const resultItem = document.createElement('div');
+        resultItem.classList.add('result-item');
+        resultItem.textContent = `Name: ${result.name}, Address: ${result.address}`;
+        resultsDiv.appendChild(resultItem);
+    });
     
     
     
