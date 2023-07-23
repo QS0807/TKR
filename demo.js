@@ -142,7 +142,7 @@ function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
         }
 
         if(matchFound) {
-            matches.push({insuredNames, mailingAddresses});
+            matches.push(insuredNames);
         }
     }
     return matches;
