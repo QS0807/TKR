@@ -5,8 +5,11 @@ async function search() {
 
     const response = await getSearch({});
    
-    const results = prefixSearch(response, insuredNameInput);
-    console.log(results)
+    const results = []
+    results = prefixSearch(response, insuredNameInput);
+    results.forEach((element) => {
+      console.log(element);
+    });
 
     
     
@@ -116,6 +119,6 @@ function prefixSearch(inputData, searchQuery) {
         }
     }
 
-    return matches[0];
+    return matches;
 }
 
