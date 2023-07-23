@@ -5,11 +5,8 @@ async function search() {
 
     const response = await getSearch({});
    
-    const results = []
-    results = prefixSearch(response, insuredNameInput);
-    results.forEach((element) => {
-      console.log(element);
-    });
+    const result = prefixSearch(response, insuredNameInput);
+    console.log(result);
 
     
     
