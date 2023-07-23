@@ -4,45 +4,53 @@ async function search() {
     const mailingAddressInput = document.getElementById('mailingAddress').value;
 
     const response = await getSearch({});
-    const data1 = JSON.parse(response);
+   
+    const results = prefixSearch(response, insuredNameInput);
+    console.log(results)
 
-    const insuredNames = [];
-    const mailingAddresses = [];
+    
+    
+    
+    
+    // const data1 = JSON.parse(response);
 
-    data1.records.forEach(record => {
-        const insuredName = record.fields['Insured Names'];
-        const mailingAddress = record.fields['Mailing Address'];
+    // const insuredNames = [];
+    // const mailingAddresses = [];
 
-        insuredNames.push(insuredName);
-        mailingAddresses.push(mailingAddress);
-    });
+    // data1.records.forEach(record => {
+    //     const insuredName = record.fields['Insured Names'];
+    //     const mailingAddress = record.fields['Mailing Address'];
 
-    let results = [];
+    //     insuredNames.push(insuredName);
+    //     mailingAddresses.push(mailingAddress);
+    // });
 
-    if (insuredNameInput) {
-        insuredNames.forEach((name, i) => {
-            if (name.includes(insuredNameInput)) {
-                results.push({name, address: mailingAddresses[i]});
-            }
-        });
-    }
+    // let results = [];
 
-    if (mailingAddressInput) {
-        mailingAddresses.forEach((address, i) => {
-            if (address.includes(mailingAddressInput)) {
-                results.push({name: insuredNames[i], address});
-            }
-        });
-    }
+    // if (insuredNameInput) {
+    //     insuredNames.forEach((name, i) => {
+    //         if (name.includes(insuredNameInput)) {
+    //             results.push({name, address: mailingAddresses[i]});
+    //         }
+    //     });
+    // }
 
-    const resultsDiv = document.getElementById('searchResults');
-    resultsDiv.innerHTML = '';
-    results.forEach(result => {
-        const resultItem = document.createElement('div');
-        resultItem.classList.add('result-item');
-        resultItem.textContent = `Name: ${result.name}, Address: ${result.address}`;
-        resultsDiv.appendChild(resultItem);
-    });
+    // if (mailingAddressInput) {
+    //     mailingAddresses.forEach((address, i) => {
+    //         if (address.includes(mailingAddressInput)) {
+    //             results.push({name: insuredNames[i], address});
+    //         }
+    //     });
+    // }
+
+    // const resultsDiv = document.getElementById('searchResults');
+    // resultsDiv.innerHTML = '';
+    // results.forEach(result => {
+    //     const resultItem = document.createElement('div');
+    //     resultItem.classList.add('result-item');
+    //     resultItem.textContent = `Name: ${result.name}, Address: ${result.address}`;
+    //     resultsDiv.appendChild(resultItem);
+    // });
 }
 
 // The storage function
@@ -94,5 +102,20 @@ async function getSearch({}) {
     } catch(error) {
         console.log(`Fetch Error: ${error}`);
     }
+}
+
+//Search funciton
+function prefixSearch(inputData, searchQuery) {
+    const matches = [];
+
+    for (const field in inputData.fields) {
+        const fieldValue = inputData.fields[field];
+
+        if (fieldValue.startsWith(searchQuery)) {
+            matches.push({ field, value: fieldValue });
+        }
+    }
+
+    return matches;
 }
 
