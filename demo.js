@@ -4,14 +4,14 @@ async function search() {
     const mailingAddressInput = document.getElementById('mailingAddress').value;
 
     const response = await getSearch({});
-    
+
     
 
     console.log(response)
 
     console.log(insuredNameInput)
-    
-    
+
+
     const result = prefixSearch(response, insuredNameInput);
     console.log(result);
 
@@ -125,16 +125,27 @@ async function getSearch({}) {
 }
 
 //Search funciton
-function prefixSearch(inputData, searchQuery) {
+function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
     const matches = [];
 
     for (const record of inputData.records) {
         const insuredNames = record.fields["Insured Names"];
-    
-        if (insuredNames.toLowerCase().startsWith(searchQuery.toLowerCase())) {
-            matches.push(insuredNames);
+        const mailingAddresses = record.fields["Mailing Address"];
+        let matchFound = false;
+
+        if (insuredNames.toLowerCase().startsWith(insuredNameQuery.toLowerCase())) {
+            matchFound = true;
+        }
+
+        if (mailingAddresses && mailingAddresses.toLowerCase().startsWith(mailingAddressQuery.toLowerCase())) {
+            matchFound = true;
+        }
+
+        if(matchFound) {
+            matches.push({insuredNames, mailingAddresses});
         }
     }
     return matches;
 }
+
 
