@@ -1,30 +1,82 @@
-// Function to handle form submission
-function handleFormSubmit(event) {
-    event.preventDefault();
+// The search function
+async function search() {
+    const insuredNameInput = document.getElementById('insuredName').value;
+    const mailingAddressInput = document.getElementById('mailingAddress').value;
 
-    // Get form values
-    let firstName = document.getElementById('firstName').value;
-    let lastName = document.getElementById('lastName').value;
-    let gender = document.getElementById('gender').value;
+    const response = await getSearch({});
+    const data1 = JSON.parse(response);
 
-    // Create JSON object
-    let userInformation = {
-        firstName: firstName,
-        lastName: lastName,
-        gender: gender
-    };
+    const insuredNames = [];
+    const mailingAddresses = [];
 
-    console.log(userInformation)
-    // Send JSON directly to the Cloudflare Worker
-    fetch('', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userInformation)
-        }
-    );
+    data1.records.forEach(record => {
+        const insuredName = record.fields['Insured Names'];
+        const mailingAddress = record.fields['Mailing Address'];
+
+        insuredNames.push(insuredName);
+        mailingAddresses.push(mailingAddress);
+    });
+
+    let results = [];
+
+    if (insuredNameInput) {
+        insuredNames.forEach((name, i) => {
+            if (name.includes(insuredNameInput)) {
+                results.push({name, address: mailingAddresses[i]});
+            }
+        });
+    }
+
+    if (mailingAddressInput) {
+        mailingAddresses.forEach((address, i) => {
+            if (address.includes(mailingAddressInput)) {
+                results.push({name: insuredNames[i], address});
+            }
+        });
+    }
+
+    document.getElementById('searchResults').innerText = JSON.stringify(results, null, 2);
 }
 
-document.getElementById('userInfoForm').addEventListener('submit', handleFormSubmit);
+// The storage function
+function storeInfo() {
+    const businessName = document.getElementById('businessName').value;
+    const firstName = document.getElementById('firstName').value;
+    const middleName = document.getElementById('middleName').value;
+    const lastName = document.getElementById('lastName').value;
+
+    const data = {
+        businessName,
+        firstName,
+        middleName,
+        lastName,
+    };
+
+    // For simplicity, we're just storing the data in localStorage.
+    // In a real app, you'd probably send this data to a server.
+    localStorage.setItem('userInfo', JSON.stringify(data));
+
+    // Let's calculate accuracy for demo purposes
+    const correctData = {
+        businessName: "Correct Business",
+        firstName: "Correct First",
+        middleName: "Correct Middle",
+        lastName: "Correct Last",
+    };
+
+    let correctCount = 0;
+    Object.keys(data).forEach(key => {
+        if (data[key] === correctData[key]) correctCount++;
+    });
+
+    const accuracy = (correctCount / Object.keys(data).length) * 100;
+    console.log(`Accuracy: ${accuracy}%`);
+}
+
+async function getSearch({}) {
+    return fetch('https://api.airtable.com/v0/appyIGobg4qaEqWWP/Table%201?maxRecords=3&view=Grid%20view', {
+        headers: {
+            'Authorization': 'Bearer YOUR_SECRET_API_TOKEN'
+        }
+    }).then(response => response.text());
+}

@@ -1,19 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Clearance</title>
+    <title>Single Page Application</title>
+    <style>
+        .search-box, .store-box {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .result-box {
+            margin-top: 10px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-<form id="userInfoForm">
-    <label for="firstName">First Name:</label><br>
-    <input type="text" id="firstName" name="firstName"><br>
-    <label for="lastName">Last Name:</label><br>
-    <input type="text" id="lastName" name="lastName"><br>
-    <label for="gender">Gender:</label><br>
-    <input type="text" id="gender" name="gender"><br>
-    <input type="submit" value="Submit">
-</form>
+<div id="search-box" class="search-box">
+    <input type="text" id="insuredName" placeholder="Insured Name">
+    <input type="text" id="mailingAddress" placeholder="Mailing Address">
+    <button onclick="search()">Search</button>
+    <div id="searchResults" class="result-box"></div>
+</div>
+
+<div id="store-box" class="store-box">
+    <input type="text" id="businessName" placeholder="Business Name">
+    <input type="text" id="firstName" placeholder="First Name">
+    <input type="text" id="middleName" placeholder="Middle Name">
+    <input type="text" id="lastName" placeholder="Last Name">
+    <button onclick="storeInfo()">Submit</button>
+</div>
+
 <script src="index.js"></script>
 </body>
 </html>
