@@ -115,14 +115,13 @@ async function getSearch({}) {
 function prefixSearch(inputData, searchQuery) {
     const matches = [];
 
-    for (const field in inputData.fields) {
-        const fieldValue = inputData.fields[field];
-
-        if (fieldValue.startsWith(searchQuery)) {
-            matches.push({ field, value: fieldValue });
+    for (const record of inputData.records) {
+        const insuredNames = record.fields["Insured Names"];
+    
+        if (insuredNames.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+            matches.push(insuredNames);
         }
     }
-
     return matches;
 }
 
