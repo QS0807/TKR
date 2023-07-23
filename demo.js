@@ -82,7 +82,7 @@ async function getSearch({}) {
     try {
         const response = await fetch('https://api.airtable.com/v0/appyIGobg4qaEqWWP/Table%201/recFh5GxvZysUrPHB', {
             headers: {
-                'Authorization': 'Bearer patGGwOeEzzWK3izh'
+                'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
             }
         });
 
