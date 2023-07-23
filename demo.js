@@ -82,7 +82,7 @@ async function getSearch({}) {
     try {
         const response = await fetch('https://api.airtable.com/v0/appyIGobg4qaEqWWP/Table%201?maxRecords=3&view=Grid%20view', {
             headers: {
-                'Authorization': 'patGGwOeEzzWK3izh.6e4a175524019fdbe11037447ab51d31b590d7beadf0d6e16855b6476ad0574f'
+                'Authorization': 'patGGwOeEzzWK3izh'
             }
         });
 
