@@ -90,10 +90,10 @@ function storeInfo() {
     localStorage.setItem('userInfo', JSON.stringify(data));
 
     const correctData = {
-        businessName: "Correct Business",
-        firstName: "Correct First",
-        middleName: "Correct Middle",
-        lastName: "Correct Last",
+        businessName: "1",
+        firstName: "1",
+        middleName: "1",
+        lastName: "1",
     };
 
     let correctCount = 0;
@@ -131,17 +131,13 @@ function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
     for (const record of inputData.records) {
         const insuredNames = record.fields["Insured Names"];
         const mailingAddresses = record.fields["Mailing Address"];
-        let matchFound = false;
 
-        if (insuredNames.startsWith(insuredNameQuery)) {
-            matchFound = true;
-        }
+        // Check the conditions separately
+        const insuredNameMatch = insuredNameQuery ? insuredNames.startsWith(insuredNameQuery) : true;
+        const mailingAddressMatch = mailingAddressQuery ? mailingAddresses.startsWith(mailingAddressQuery) : true;
 
-        if (mailingAddresses && mailingAddresses.startsWith(mailingAddressQuery)) {
-            matchFound = true;
-        }
-
-        if(matchFound) {
+        // If both conditions are true, then we have a match
+        if (insuredNameMatch && mailingAddressMatch) {
             matches.push(insuredNames);
         }
     }
