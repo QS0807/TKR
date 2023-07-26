@@ -10,8 +10,12 @@ async function search() {
     console.log(response)
 
     console.log(insuredNameInput)
-
-
+    
+    // added on 7.26
+    insuredNameInput = removePunctuation(insuredNameInput);
+    mailingAddressInput = removePunctuation(mailingAddressInput);
+    
+    
     const result = prefixSearch(response, insuredNameInput);
     console.log(result);
 
@@ -142,6 +146,15 @@ function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
         }
     }
     return matches;
+}
+
+// added on 7.26
+function removePunctuation(input) {
+  // Regular expression to match any punctuation character
+  const punctuationRegex = /[!"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~]/g;
+  
+  // Replace all punctuation characters with an empty string
+  return input.replace(punctuationRegex, '');
 }
 
 
