@@ -1,7 +1,7 @@
 // The search function
 async function search() {
-    const insuredNameInput = document.getElementById('insuredName').value;
-    const mailingAddressInput = document.getElementById('mailingAddress').value;
+    let insuredNameInput = document.getElementById('insuredName').value;
+    let mailingAddressInput = document.getElementById('mailingAddress').value;
 
     const response = await getSearch({});
 
@@ -108,7 +108,55 @@ function storeInfo() {
     const accuracy = (correctCount / Object.keys(data).length) * 100;
     console.log(`Accuracy: ${accuracy}%`);
 }
+function save() {
+    var insuredInformation = {
+        type: document.getElementById("type").value,
+        businessName: document.getElementById("business-name").value,
+        firstName: document.getElementById("first-name").value,
+        middleName: document.getElementById("middle-name").value,
+        lastName: document.getElementById("last-name").value,
+        landApartmentAssociation: document.getElementById("land-apartment-association").value,
+        taxId: document.getElementById("tax-id").value,
+        dnb: document.getElementById("dnb").value,
+        riskId: document.getElementById("risk-id").value,
+        fein: document.getElementById("fein").value,
+        ssn: document.getElementById("ssn").value,
+        gender: document.getElementById("gender").value,
+        dba: document.getElementById("dba").value,
+        insuredNumber: document.getElementById("insured-number").value,
+        carrierId: document.getElementById("carrier-id").value,
+        status: document.getElementById("status").value,
+        dob: document.getElementById("dob").value,
+        statusChangeComment: document.getElementById("status-change-comment").value,
+    };
 
+    var locationInformation = {
+        description: document.getElementById("description").value,
+        country: document.getElementById("country").value,
+        address1: document.getElementById("address1").value,
+        address2: document.getElementById("address2").value,
+        zip: document.getElementById("zip").value,
+        zipExt: document.getElementById("zip-ext").value,
+        city: document.getElementById("city").value,
+        state: document.getElementById("state").value,
+        fax: document.getElementById("fax").value,
+        mobile: document.getElementById("mobile").value,
+        website: document.getElementById("website").value,
+        email: document.getElementById("email").value,
+        delivery: document.getElementById("delivery").value,
+        officeType: document.getElementById("office-type").value,
+        added: document.getElementById("added").value,
+        addedBy: document.getElementById("added-by").value,
+    };
+
+    var formData = {
+        insuredInformation: insuredInformation,
+        locationInformation: locationInformation,
+    };
+
+    console.log(JSON.stringify(formData));
+    // This is where you'd send your form data. Replace console.log with your actual function.
+}
 
 async function getSearch({}) {
     try {

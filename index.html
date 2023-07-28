@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Single Page Application</title>
     <style>
-        .search-box, .store-box {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #000;
-            border-radius: 5px;
+        body {
+            font-family: Arial, sans-serif;
         }
-
-        .result-box {
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .info-box, .search-box {
+            background-color: lightblue;
+            border-radius: 5px;
+            padding: 20px;
+            width: 45%;
+        }
+        .info-box label, .search-box label {
+            display: block;
             margin-top: 10px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
         }
-
-        .result-item {
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #000;
-            border-radius: 5px;
+        .info-box input[type="text"], .info-box input[type="email"], .search-box input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .info-box textarea {
+            width: 100%;
+            height: 80px;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+
 <div id="search-box" class="search-box">
     <input type="text" id="insuredName" placeholder="Insured Name">
     <input type="text" id="mailingAddress" placeholder="Mailing Address">
@@ -33,14 +50,68 @@
     <div id="searchResults" class="result-box"></div>
 </div>
 
-<div id="store-box" class="store-box">
-    <input type="text" id="businessName" placeholder="Business Name">
-    <input type="text" id="firstName" placeholder="First Name">
-    <input type="text" id="middleName" placeholder="Middle Name">
-    <input type="text" id="lastName" placeholder="Last Name">
-    <button onclick="storeInfo()">Submit</button>
+<h1 class="title">New Insured</h1>
+<div class="container">
+    <div class="info-box">
+        <h2>Insured Information</h2>
+        <label>Type<input type="text" id="type"></label>
+        <label>Business Name<input type="text" id="business-name"></label>
+        <label>First Name<input type="text" id="first-name"></label>
+        <label>Middle Name<input type="text" id="middle-name"></label>
+        <label>Last Name<input type="text" id="last-name"></label>
+        <label>Land Apartment Association<input type="text" id="land-apartment-association"></label>
+        <label>Tax ID<input type="text" id="tax-id"></label>
+        <label>DNB#<input type="text" id="dnb"></label>
+        <label>Risk ID<input type="text" id="risk-id"></label>
+        <label>FEIN<input type="text" id="fein"></label>
+        <label>SSN<input type="text" id="ssn"></label>
+        <label>Gender<input type="text" id="gender"></label>
+    </div>
+
+    <div class="info-box">
+        <h2>Additional Info</h2>
+        <label>DBA<input type="text" id="dba"></label>
+        <label>Insured #<input type="text" id="insured-number"></label>
+        <label>Carrier ID<input type="text" id="carrier-id"></label>
+        <label>Status<input type="text" id="status"></label>
+        <label>DOB<input type="text" id="dob"></label>
+        <label>Status Change Comment<textarea id="status-change-comment"></textarea></label>
+    </div>
 </div>
+<h1 class="title">Location Info</h1>
+<div class="container">
+    <div class="info-box">
+        <h2>Location Details</h2>
+        <label>Description<input type="text" id="description"></label>
+        <label>Country
+            <select id="country">
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <!-- Add other countries as needed -->
+            </select>
+        </label>
+        <label>Address1<input type="text" id="address1"></label>
+        <label>Address2<input type="text" id="address2"></label>
+        <label>Zip<input type="text" id="zip"></label>
+        <label>Zip Ext<input type="text" id="zip-ext"></label>
+        <label>City<input type="text" id="city"></label>
+        <label>State<input type="text" id="state"></label>
+    </div>
+    <div class="info-box">
+        <h2>Contact Details</h2>
+        <label>Fax<input type="text" id="fax"></label>
+        <label>Mobile#<input type="text" id="mobile"></label>
+        <label>Website<input type="text" id="website"></label>
+        <label>Email<input type="email" id="email"></label>
+        <label>Delivery<input type="text" id="delivery"></label>
+        <label>Office Type<input type="text" id="office-type"></label>
+        <label>Added<input type="text" id="added"></label>
+        <label>Added by<input type="text" id="added-by"></label>
+    </div>
+</div>
+<button id="save" onclick="save()">Save</button>
 
 <script src="demo.js"></script>
+
 </body>
 </html>
