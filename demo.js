@@ -206,19 +206,74 @@ function removePunctuation(input) {
 }
 
 // the judge function 
-function isEqual(arr1, arr2) {
-  // Check if both arrays have the same length
-  if (arr1.length !== arr2.length) {
-    return false;
-  }
+// function isEqual(arr1, arr2) {
+//   // Check if both arrays have the same length
+//   if (arr1.length !== arr2.length) {
+//     return false;
+//   }
 
-  // Compare each element of the arrays
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
-      return false;
+//   // Compare each element of the arrays
+//   for (let i = 0; i < arr1.length; i++) {
+//     if (arr1[i] !== arr2[i]) {
+//       return false;
+//     }
+//   }
+
+//   return true;
+// }
+
+
+// added on 7.29
+
+// retrieve answer from airtable
+async function getSearch({}) {
+    try {
+        const response = await fetch('https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=100&view=Grid%20view', {
+            headers: {
+                'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+            return await response.json();
+        }
+    } catch(error) {
+        console.log(`Fetch Error: ${error}`);
     }
-  }
+}
 
-  return true;
+
+// judge function: will return the score and wrong answer
+// input will be userAnswers: array from user input
+// answerTemplate: record retrived from airtable: answer template
+function calculateScoreWithWrongAnswers(userAnswers, answerTemplate) {
+    const records = answerTemplate.records;
+    let score = 0;
+    const wrongAnswers = [];
+    
+    for (const record of records) {
+        const question = record.fields["Question"];
+        const correctAnswer = record.fields["answer"];
+        const userAnswerObj = userAnswers.find((ansObj) => ansObj.question === question);
+    
+        if (userAnswerObj) {
+            const userAnswer = userAnswerObj.answer;
+            
+            // Comparing the user's answer to the correct answer (case-insensitive)
+            if (userAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
+                score++;
+            } else {
+                wrongAnswers.push({
+                    question,
+                    userAnswer,
+                    correctAnswer
+                });
+            }
+        }
+    }
+
+  return { score, wrongAnswers };
 }
 
