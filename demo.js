@@ -77,38 +77,8 @@ async function search() {
     // });
 }
 
-// The storage function
-function storeInfo() {
-    const businessName = document.getElementById('businessName').value;
-    const firstName = document.getElementById('firstName').value;
-    const middleName = document.getElementById('middleName').value;
-    const lastName = document.getElementById('lastName').value;
-
-    const data = {
-        businessName,
-        firstName,
-        middleName,
-        lastName,
-    };
-
-    localStorage.setItem('userInfo', JSON.stringify(data));
-
-    const correctData = {
-        businessName: "1",
-        firstName: "1",
-        middleName: "1",
-        lastName: "1",
-    };
-
-    let correctCount = 0;
-    Object.keys(data).forEach(key => {
-        if (data[key] === correctData[key]) correctCount++;
-    });
-
-    const accuracy = (correctCount / Object.keys(data).length) * 100;
-    console.log(`Accuracy: ${accuracy}%`);
-}
-function save() {
+// The save function
+async function save() {
     var insuredInformation = {
         type: document.getElementById("type").value,
         businessName: document.getElementById("business-name").value,
@@ -155,9 +125,23 @@ function save() {
     };
 
     console.log(JSON.stringify(formData));
-    // This is where you'd send your form data. Replace console.log with your actual function.
+
+    var userAnswers = [
+        {question: 'Type', answer: insuredInformation.type},
+        {question: 'Business Name', answer: insuredInformation.businessName},
+        {question: 'First Name', answer: insuredInformation.firstName},
+        {question: 'Middle Name', answer: insuredInformation.middleName},
+        {question: 'Last Name', answer: insuredInformation.lastName}
+    ];
+
+    const answerTemplate = await getSearch({});
+
+    var result = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
+    console.log(result);
+
 }
 
+// AirTable API
 async function getSearch({}) {
     try {
         const response = await fetch('https://api.airtable.com/v0/appyIGobg4qaEqWWP/Table%201?maxRecords=100&view=Grid%20view', {
@@ -175,7 +159,23 @@ async function getSearch({}) {
         console.log(`Fetch Error: ${error}`);
     }
 }
+async function getAnswer({}) {
+    try {
+        const response = await fetch('airtable link', {
+            headers: {
+                'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
+            }
+        });
 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+            return await response.json();
+        }
+    } catch(error) {
+        console.log(`Fetch Error: ${error}`);
+    }
+}
 //Search funciton
 function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
     const matches = [];
