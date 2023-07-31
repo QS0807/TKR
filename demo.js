@@ -34,16 +34,16 @@ async function search() {
     });
 
 }
-async function judge(){
+// async function judge(){
     
     
-    const answer_T = await getAnswerTemplate()
+//     const answer_T = await getAnswerTemplate()
     
-    let result = calculateScoreWithWrongAnswers(user_Input, answer_T)
+//     let result = calculateScoreWithWrongAnswers(user_Input, answer_T)
 
-    console.log(result)
+//     console.log(result)
     
-}
+// }
 
 // The save function
 async function save() {
@@ -102,7 +102,8 @@ async function save() {
         {question: 'Last Name', answer: insuredInformation.lastName}
     ];
 
-    const answerTemplate = await getSearch({});
+    const answerTemplate = await getAnswerTemplate({});
+    console.log("test1")
 
     var result = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
     console.log(result);
