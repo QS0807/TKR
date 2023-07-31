@@ -32,49 +32,17 @@ async function search() {
         // Append the itemDiv to the resultsDiv
         resultsDiv.appendChild(itemDiv);
     });
+
+}
+async function judge(){
     
     
+    const answer_T = await getAnswerTemplate()
     
+    let result = calculateScoreWithWrongAnswers(user_Input, answer_T)
+
+    console.log(result)
     
-    // const data1 = JSON.parse(response);
-
-    // const insuredNames = [];
-    // const mailingAddresses = [];
-
-    // data1.records.forEach(record => {
-    //     const insuredName = record.fields['Insured Names'];
-    //     const mailingAddress = record.fields['Mailing Address'];
-
-    //     insuredNames.push(insuredName);
-    //     mailingAddresses.push(mailingAddress);
-    // });
-
-    // let results = [];
-
-    // if (insuredNameInput) {
-    //     insuredNames.forEach((name, i) => {
-    //         if (name.includes(insuredNameInput)) {
-    //             results.push({name, address: mailingAddresses[i]});
-    //         }
-    //     });
-    // }
-
-    // if (mailingAddressInput) {
-    //     mailingAddresses.forEach((address, i) => {
-    //         if (address.includes(mailingAddressInput)) {
-    //             results.push({name: insuredNames[i], address});
-    //         }
-    //     });
-    // }
-
-    // const resultsDiv = document.getElementById('searchResults');
-    // resultsDiv.innerHTML = '';
-    // results.forEach(result => {
-    //     const resultItem = document.createElement('div');
-    //     resultItem.classList.add('result-item');
-    //     resultItem.textContent = `Name: ${result.name}, Address: ${result.address}`;
-    //     resultsDiv.appendChild(resultItem);
-    // });
 }
 
 // The save function
@@ -159,23 +127,23 @@ async function getSearch({}) {
         console.log(`Fetch Error: ${error}`);
     }
 }
-async function getAnswer({}) {
-    try {
-        const response = await fetch('airtable link', {
-            headers: {
-                'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
-            }
-        });
+// async function getAnswer({}) {
+//     try {
+//         const response = await fetch('airtable link', {
+//             headers: {
+//                 'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
+//             }
+//         });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        } else {
-            return await response.json();
-        }
-    } catch(error) {
-        console.log(`Fetch Error: ${error}`);
-    }
-}
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! status: ${response.status}`);
+//         } else {
+//             return await response.json();
+//         }
+//     } catch(error) {
+//         console.log(`Fetch Error: ${error}`);
+//     }
+// }
 //Search funciton
 function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
     const matches = [];
@@ -226,11 +194,11 @@ function removePunctuation(input) {
 // added on 7.29
 
 // retrieve answer from airtable
-async function getSearch({}) {
+async function getAnswerTemplate({}) {
     try {
-        const response = await fetch('https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=100&view=Grid%20view', {
+        const response = await fetch('https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=5&view=Grid%20view', {
             headers: {
-                'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
+                'Authorization': 'Bearer patFFDNWqjeLexsMw.d08186b943b933cbc2b9347e6d6cb97911ea622afcd623b55e335763914a85df'
             }
         });
 
