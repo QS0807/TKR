@@ -150,8 +150,8 @@ function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
     const matches = [];
 
     for (const record of inputData.records) {
-        const insuredNames = record.fields["Insured Names"];
-        const mailingAddresses = record.fields["Mailing Address"];
+        const insuredNames = removePunctuation(record.fields["Insured Names"]);
+        const mailingAddresses = removePunctuation(record.fields["Mailing Address"]);
 
         // Check the conditions separately
         const insuredNameMatch = insuredNameQuery ? insuredNames.startsWith(insuredNameQuery) : true;
