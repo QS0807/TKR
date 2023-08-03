@@ -238,6 +238,6 @@ function prefixSearch(data, query) {
         );
       });
 
-    return results;
+    return results.map((data) => record.fields["Insured Names"]);;
 }
 
