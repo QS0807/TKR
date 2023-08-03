@@ -220,24 +220,25 @@ function calculateScoreWithWrongAnswers(userAnswers, answerTemplate) {
 
 //Search function 8_2
 
-function removePunctuation(str) {
+function normalizeString(str) {
     return str.replace(/[^\w\s]/g, '').toLowerCase();
 }
 
-// Function to perform prefix search on mailing addresses and insured names
-function prefixSearch(data, query) {
-    const cleanedQuery = removePunctuation(query);
+function prefixSearch(records, query) {
+    const normalizedQuery = normalizeString(query);
 
-    const results = data.records.filter((record) => {
-        const mailingAddress = removePunctuation(record.fields["Mailing Address"]);
-        const insuredNames = removePunctuation(record.fields["Insured Names"]);
+    const matchingItems = records.filter((record) => {
+        const mailingAddress = record.fields["Mailing Address"];
+        const normalizedMailingAddress = normalizeString(mailingAddress);
+    
+        const insuredName = record.fields["Insured Names"];
+        const normalizedInsuredName = normalizeString(insuredName);
 
         return (
-            mailingAddress.startsWith(cleanedQuery) ||
-            insuredNames.startsWith(cleanedQuery)
+            normalizedMailingAddress.startsWith(normalizedQuery) ||
+            normalizedInsuredName.startsWith(normalizedQuery)
         );
-      });
+    });
 
-    return results.map((data) => record.fields["Insured Names"]);;
+    return matchingItems;
 }
-
