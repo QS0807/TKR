@@ -221,16 +221,17 @@ function calculateScoreWithWrongAnswers(userAnswers, answerTemplate) {
 //Search function 8_2
 
 function normalizeString(str) {
+
     return str.replace(/[^\w\s]/g, '').toLowerCase();
 }
 
-function prefixSearch(records, query) {
+function prefixSearch(data, query) {
     const normalizedQuery = normalizeString(query);
 
-    const matchingItems = records.filter((record) => {
+    const matchingItems = data.records.filter((record) => {
         const mailingAddress = record.fields["Mailing Address"];
         const normalizedMailingAddress = normalizeString(mailingAddress);
-    
+
         const insuredName = record.fields["Insured Names"];
         const normalizedInsuredName = normalizeString(insuredName);
 
@@ -240,5 +241,6 @@ function prefixSearch(records, query) {
         );
     });
 
-    return matchingItems;
+    const matchingInsuredNames = matchingItems.map((item) => item.fields["Insured Names"]);
+    return matchingInsuredNames;
 }
