@@ -128,42 +128,28 @@ async function getSearch({}) {
         console.log(`Fetch Error: ${error}`);
     }
 }
-// async function getAnswer({}) {
-//     try {
-//         const response = await fetch('airtable link', {
-//             headers: {
-//                 'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
-//             }
-//         });
 
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//         } else {
-//             return await response.json();
+
+
+//Search funciton(old version)
+// function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
+//     const matches = [];
+
+//     for (const record of inputData.records) {
+//         const insuredNames = record.fields["Insured Names"];
+//         const mailingAddresses = record.fields["Mailing Address"];
+
+//         // Check the conditions separately
+//         const insuredNameMatch = insuredNameQuery ? insuredNames.startsWith(insuredNameQuery) : true;
+//         const mailingAddressMatch = mailingAddressQuery ? mailingAddresses.startsWith(mailingAddressQuery) : true;
+
+//         // If both conditions are true, then we have a match
+//         if (insuredNameMatch && mailingAddressMatch) {
+//             matches.push(insuredNames);
 //         }
-//     } catch(error) {
-//         console.log(`Fetch Error: ${error}`);
 //     }
+//     return matches;
 // }
-//Search funciton
-function prefixSearch(inputData, insuredNameQuery, mailingAddressQuery) {
-    const matches = [];
-
-    for (const record of inputData.records) {
-        const insuredNames = record.fields["Insured Names"];
-        const mailingAddresses = record.fields["Mailing Address"];
-
-        // Check the conditions separately
-        const insuredNameMatch = insuredNameQuery ? insuredNames.startsWith(insuredNameQuery) : true;
-        const mailingAddressMatch = mailingAddressQuery ? mailingAddresses.startsWith(mailingAddressQuery) : true;
-
-        // If both conditions are true, then we have a match
-        if (insuredNameMatch && mailingAddressMatch) {
-            matches.push(insuredNames);
-        }
-    }
-    return matches;
-}
 
 // added on 7.26
 function removePunctuation(input) {
@@ -174,22 +160,7 @@ function removePunctuation(input) {
   return input.replace(punctuationRegex, '');
 }
 
-// the judge function 
-// function isEqual(arr1, arr2) {
-//   // Check if both arrays have the same length
-//   if (arr1.length !== arr2.length) {
-//     return false;
-//   }
 
-//   // Compare each element of the arrays
-//   for (let i = 0; i < arr1.length; i++) {
-//     if (arr1[i] !== arr2[i]) {
-//       return false;
-//     }
-//   }
-
-//   return true;
-// }
 
 
 // added on 7.29
@@ -246,3 +217,30 @@ function calculateScoreWithWrongAnswers(userAnswers, answerTemplate) {
   return { score, wrongAnswers };
 }
 
+
+//Search function 8_2
+
+function normalizeString(str) {
+
+    return str.replace(/[^\w\s]/g, '').toLowerCase();
+}
+
+function prefixSearch(data, query) {
+    const normalizedQuery = normalizeString(query);
+
+    const matchingItems = data.records.filter((record) => {
+        const mailingAddress = record.fields["Mailing Address"];
+        const normalizedMailingAddress = normalizeString(mailingAddress);
+
+        const insuredName = record.fields["Insured Names"];
+        const normalizedInsuredName = normalizeString(insuredName);
+
+        return (
+            normalizedMailingAddress.startsWith(normalizedQuery) ||
+            normalizedInsuredName.startsWith(normalizedQuery)
+        );
+    });
+
+    const matchingInsuredNames = matchingItems.map((item) => item.fields["Insured Names"]);
+    return matchingInsuredNames;
+}
