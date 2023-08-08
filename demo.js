@@ -53,7 +53,7 @@ async function save() {
         firstName: document.getElementById("first-name").value,
         middleName: document.getElementById("middle-name").value,
         lastName: document.getElementById("last-name").value,
-        landApartmentAssociation: document.getElementById("name-on-policy").value,
+        nameOnPolicy: document.getElementById("name-on-policy").value,
         taxId: document.getElementById("tax-id").value,
         dnb: document.getElementById("dnb").value,
         riskId: document.getElementById("risk-id").value,
@@ -99,9 +99,15 @@ async function save() {
         {question: 'Business Name', answer: insuredInformation.businessName},
         {question: 'First Name', answer: insuredInformation.firstName},
         {question: 'Middle Name', answer: insuredInformation.middleName},
-        {question: 'Last Name', answer: insuredInformation.lastName}
+        {question: 'Last Name', answer: insuredInformation.lastName},
+        {question: 'Name on policy', answer: insuredInformation.nameOnPolicy},
+        {question: 'Address1', answer: locationInformation.address1},
+        {question: 'Address2', answer: locationInformation.address2},
+        {question: 'Zip', answer: locationInformation.zip},
+        {question: 'City', answer: locationInformation.city},
+        {question: 'State', answer: locationInformation.state},
+        {question: 'DBA', answer: insuredInformation.dba},
     ];
-
     const answerTemplate = await getAnswerTemplate({});
     console.log("test1")
 
@@ -168,7 +174,7 @@ function removePunctuation(input) {
 // retrieve answer from airtable
 async function getAnswerTemplate({}) {
     try {
-        const response = await fetch('https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=5&view=Grid%20view', {
+        const response = await fetch('https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=12&view=Grid%20view', {
             headers: {
                 'Authorization': 'Bearer patFFDNWqjeLexsMw.d08186b943b933cbc2b9347e6d6cb97911ea622afcd623b55e335763914a85df'
             }
