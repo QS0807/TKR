@@ -53,7 +53,7 @@ async function save() {
         firstName: document.getElementById("first-name").value,
         middleName: document.getElementById("middle-name").value,
         lastName: document.getElementById("last-name").value,
-        landApartmentAssociation: document.getElementById("land-apartment-association").value,
+        landApartmentAssociation: document.getElementById("name-on-policy").value,
         taxId: document.getElementById("tax-id").value,
         dnb: document.getElementById("dnb").value,
         riskId: document.getElementById("risk-id").value,
