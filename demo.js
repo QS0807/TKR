@@ -130,6 +130,27 @@ async function save() {
 
 }
 
+//email sending function
+function submitForm(e) {
+    e.preventDefault();
+
+    let ebody = ''
+
+    Email.send({
+        SecureToken : "050e86ee-929e-4e27-b391-67ff6071ecc5",
+        To : 'jasperqs7@gmail.com',
+        From : "tooooby0807@gmail.com",
+        Subject : "Testing Email Sending",
+        Body : "Hello, this is a test"
+    }).then(
+        message => alert(message)
+    );
+}
+
+// Assuming you have a form element
+const submitButton = document.querySelector("#submitButton");
+submitButton.addEventListener('click', submitForm);
+
 // AirTable API
 async function getSearch({}) {
     try {
