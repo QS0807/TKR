@@ -128,6 +128,15 @@ async function save() {
     var result = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
     console.log(result);
 
+    //added on 8_14
+    fetch('https://damp-bonus-34d1.hlzhong1130.workers.dev', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(result),
+    })
+
 }
 
 // AirTable API
