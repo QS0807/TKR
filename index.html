@@ -17,6 +17,7 @@
             padding: 20px;
             width: 45%;
         }
+
         .info-box label, .search-box label {
             display: block;
             margin-top: 10px;
@@ -38,6 +39,16 @@
             padding: 10px 20px;
             font-size: 20px;
             cursor: pointer;
+        }
+        .two-columns {
+            display: flex;
+            justify-content: space-between;
+        }
+        .two-columns > div {
+            width: 48%; /* Adjust as needed */
+        }
+        .title {
+            text-align: center;
         }
     </style>
 </head>
@@ -82,7 +93,7 @@
 <div class="container">
     <div class="info-box">
         <h2>Location Details</h2>
-        <label>Description<input type="text" id="description"></label>
+        <label>Description<input type="text" id="description" value="Mailing Address"></label>
         <label>Country
             <select id="country">
                 <option value="USA">USA</option>
@@ -109,6 +120,29 @@
         <label>Added by<input type="text" id="added-by"></label>
     </div>
 </div>
+<h1 class="title">New Quote</h1>
+<div class="container">
+    <div class="info-box">
+        <h2>Quote Information</h2>
+        <div class="two-columns">
+            <div>
+                <label>Quoting Office<input type="text" id="quoting-office"></label>
+                <label>Line<input type="text" id="line"></label>
+                <label>State<input type="text" id="quote-state"></label>
+                <label>Company<input type="text" id="company"></label>
+                <label>Billing Type<input type="text" id="billing-type"></label>
+            </div>
+            <div>
+                <label>Issuing Office<input type="text" id="issuing-office"></label>
+                <label>Underwriter<input type="text" id="underwriter"></label>
+                <label>Policy Type<input type="text" id="policy-type"></label>
+                <label>Effective<input type="text" id="effective"></label>
+                <label>Expiration<input type="text" id="expiration"></label>
+            </div>
+        </div>
+    </div>
+</div>
+
 <button id="save" onclick="save()">Save</button>
 
 <script src="demo.js"></script>

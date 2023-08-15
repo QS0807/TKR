@@ -87,6 +87,20 @@ async function save() {
         addedBy: document.getElementById("added-by").value,
     };
 
+    var quoteInformation = {
+        quotingOffice: document.getElementById("quoting-office").value,
+        line: document.getElementById("line").value,
+        state: document.getElementById("quote-state").value,
+        company: document.getElementById("company").value,
+        billingType: document.getElementById("billing-type").value,
+        issuingOffice: document.getElementById("issuing-office").value,
+        underwriter: document.getElementById("underwriter").value,
+        policyType: document.getElementById("policy-type").value,
+        effective: document.getElementById("effective").value,
+        expiration: document.getElementById("expiration").value
+    };
+
+
     var formData = {
         insuredInformation: insuredInformation,
         locationInformation: locationInformation,
