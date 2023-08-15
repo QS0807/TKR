@@ -155,8 +155,6 @@ function submitForm(e) {
         message => alert(message)
     );
 }
-
-// Assuming you have a form element
 const submitButton = document.querySelector("#submitButton");
 submitButton.addEventListener('click', submitForm);
 
