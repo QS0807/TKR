@@ -128,6 +128,15 @@ async function save() {
     var result = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
     console.log(result);
 
+    //added on 8_14
+
+
+    fetch('https://damp-bonus-34d1.hlzhong1130.workers.dev/submit', {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify(result)
+        }
+    );
 }
 
 //email sending function
