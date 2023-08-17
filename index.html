@@ -120,6 +120,20 @@
         <label>Added by<input type="text" id="added-by"></label>
     </div>
 </div>
+
+<h1 class="title">New Submission</h1>
+<div class="container">
+    <div class="info-box">
+        <h2>Submission Information</h2>
+        <label>Producer By Location<input type="text" id="producer-by-location"></label>
+        <label>Producer By Contact<input type="text" id="producer-by-contact"></label>
+        <label>In-House Producer<input type="text" id="in-house-producer"></label>
+        <label>Underwriter<input type="text" id="underwriter-submission"></label>
+        <label>TA/CSR<input type="text" id="ta-csr"></label>
+        <label>Submitted<input type="text" id="submitted"></label>
+        <label>Producer CSR<input type="text" id="producer-csr"></label>
+    </div>
+</div>
 <h1 class="title">New Quote</h1>
 <div class="container">
     <div class="info-box">
@@ -134,7 +148,7 @@
             </div>
             <div>
                 <label>Issuing Office<input type="text" id="issuing-office"></label>
-                <label>Underwriter<input type="text" id="underwriter"></label>
+                <label>Underwriter<input type="text" id="underwriter-quote"></label>
                 <label>Policy Type<input type="text" id="policy-type"></label>
                 <label>Effective<input type="text" id="effective"></label>
                 <label>Expiration<input type="text" id="expiration"></label>
@@ -142,6 +156,61 @@
         </div>
     </div>
 </div>
+<h1 class="title">Policy Info</h1>
+<div class="container">
+
+    <!-- Policy Details Box (Left Side) -->
+    <div class="info-box">
+        <h2>Policy Details</h2>
+        <label>Cost Center<input type="text" id="cost-center"></label>
+        <label>Type<input type="text" id="policy-type-policy"></label>
+        <label>Business Name<input type="text" id="policy-business-name"></label>
+        <div class="two-columns">
+            <div>
+                <label>First<input type="text" id="policy-first"></label>
+            </div>
+            <div>
+                <label>Middle<input type="text" id="policy-middle"></label>
+            </div>
+            <div>
+                <label>Last<input type="text" id="policy-last"></label>
+            </div>
+        </div>
+        <label>DBA<input type="text" id="policy-dba"></label>
+        <label>Name on Policy<input type="text" id="policy-name-on-policy"></label>
+        <label>Email<input type="email" id="policy-email"></label>
+    </div>
+
+    <!-- Mailing Address Box (Right Side) -->
+    <div class="info-box">
+        <h2>Mailing Address</h2>
+        <label>Country<input type="text" id="mailing-country" value = "United States"></label>
+        <label>Address<input type="text" id="mailing-address"></label>
+        <div class="two-columns">
+            <div>
+                <label>Zip<input type="text" id="mailing-zip"></label>
+            </div>
+            <div>
+                <label>Ext<input type="text" id="mailing-ext"></label>
+            </div>
+        </div>
+        <div class="two-columns">
+            <div>
+                <label>City<input type="text" id="mailing-city"></label>
+            </div>
+            <div>
+                <label>State<input type="text" id="mailing-state"></label>
+            </div>
+        </div>
+        <label>Country<input type="text" id="mailing-country2"></label> <!-- Duplicate country field. You might want to remove or rename one. -->
+        <label>Phone<input type="text" id="mailing-phone"></label>
+        <label>Fax<input type="text" id="mailing-fax"></label>
+        <label>Mobile<input type="text" id="mailing-mobile"></label>
+    </div>
+
+</div>
+
+
 
 <button id="save" onclick="save()">Save</button>
 <button type="submit" id="submitButton">Submit</button>

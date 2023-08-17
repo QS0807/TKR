@@ -86,6 +86,16 @@ async function save() {
         added: document.getElementById("added").value,
         addedBy: document.getElementById("added-by").value,
     };
+    // duplicate underwriter here
+    var insuredProducers = {
+        producerByLocation: document.getElementById("producer-by-location").value,
+        producerByContact: document.getElementById("producer-by-contact").value,
+        inHouseProducer: document.getElementById("in-house-producer").value,
+        underwriter: document.getElementById("underwriter-submission").value,
+        taCsr: document.getElementById("ta-csr").value,
+        submitted: document.getElementById("submitted").value,
+        producerCsr: document.getElementById("producer-csr").value
+    };
 
     var quoteInformation = {
         quotingOffice: document.getElementById("quoting-office").value,
@@ -94,10 +104,35 @@ async function save() {
         company: document.getElementById("company").value,
         billingType: document.getElementById("billing-type").value,
         issuingOffice: document.getElementById("issuing-office").value,
-        underwriter: document.getElementById("underwriter").value,
+        underwriter: document.getElementById("underwriter-quote").value,
         policyType: document.getElementById("policy-type").value,
         effective: document.getElementById("effective").value,
         expiration: document.getElementById("expiration").value
+    };
+
+    var policyDetails = {
+        costCenter: document.getElementById("cost-center").value,
+        type: document.getElementById("policy-type-policy").value,
+        businessName: document.getElementById("policy-business-name").value,
+        first: document.getElementById("policy-first").value,
+        middle: document.getElementById("policy-middle").value,
+        last: document.getElementById("policy-last").value,
+        dba: document.getElementById("policy-dba").value,
+        nameOnPolicy: document.getElementById("policy-name-on-policy").value,
+        email: document.getElementById("policy-email").value
+    };
+
+    var mailingInfoPolicy = {
+        country: document.getElementById("mailing-country").value,
+        address: document.getElementById("mailing-address").value,
+        zip: document.getElementById("mailing-zip").value,
+        ext: document.getElementById("mailing-ext").value,
+        city: document.getElementById("mailing-city").value,
+        state: document.getElementById("mailing-state").value,
+        country2: document.getElementById("mailing-country2").value,  // You might want to remove or rename this
+        phone: document.getElementById("mailing-phone").value,
+        fax: document.getElementById("mailing-fax").value,
+        mobile: document.getElementById("mailing-mobile").value
     };
 
 
