@@ -185,7 +185,7 @@ function submitForm(e) {
         SecureToken : "050e86ee-929e-4e27-b391-67ff6071ecc5",
         To : 'jasperqs7@gmail.com',
         From : "tooooby0807@gmail.com",
-        Subject : "Testing Email Sending",
+        Subject : "Grade Report",
         Body : JSON.stringify(grade)
     }).then(
         message => alert(message)
