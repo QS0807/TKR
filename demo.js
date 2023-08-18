@@ -44,7 +44,7 @@ async function search() {
 //     console.log(result)
     
 // }
-
+var grade;
 // The save function
 async function save() {
     var insuredInformation = {
@@ -161,6 +161,7 @@ async function save() {
     console.log("test1")
 
     var result = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
+    grade = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
     console.log(result);
 
     //added on 8_14
@@ -176,7 +177,7 @@ async function save() {
 
 //email sending function
 function submitForm(e) {
-    e.preventDefault();
+
 
     let ebody = ''
 
@@ -185,7 +186,7 @@ function submitForm(e) {
         To : 'jasperqs7@gmail.com',
         From : "tooooby0807@gmail.com",
         Subject : "Testing Email Sending",
-        Body : "Hello, this is a test"
+        Body : JSON.stringify(grade)
     }).then(
         message => alert(message)
     );
@@ -193,6 +194,10 @@ function submitForm(e) {
 const submitButton = document.querySelector("#submitButton");
 submitButton.addEventListener('click', submitForm);
 
+async function saveAndSubmit(e) {
+    await save();
+    submitForm(e);
+}
 // AirTable API
 async function getSearch({}) {
     try {
