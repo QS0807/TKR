@@ -186,7 +186,7 @@ function submitForm(e) {
         To : 'jasperqs7@gmail.com',
         From : "tooooby0807@gmail.com",
         Subject : "Grade Report",
-        Body : JSON.stringify(grade)
+        Body : JSON.stringify(grade, null, 2)
     }).then(
         message => alert(message)
     );
