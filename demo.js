@@ -160,9 +160,9 @@ async function save() {
     const answerTemplate = await getAnswerTemplate({});
     console.log("test1")
 
-    var result = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
+    // var result = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
     grade = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
-    console.log(result);
+    console.log(grade);
 
     //added on 8_14
 
