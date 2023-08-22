@@ -170,7 +170,7 @@ async function save() {
         {question: 'Zip-P', answer: mailingInfoPolicy.zip},
         {question: 'City-P', answer: mailingInfoPolicy.city},
         {question: 'State-P', answer: mailingInfoPolicy.state},
-        {question: 'labeling', answer: addition.labeling}
+        {question: 'Labeling', answer: addition.labeling}
     ];
     const answerTemplate = await getAnswerTemplate({});
     console.log("test1")
