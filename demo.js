@@ -198,7 +198,7 @@ function submitForm(e) {
 
     Email.send({
         SecureToken : "050e86ee-929e-4e27-b391-67ff6071ecc5",
-        To : 'tooooby0807@gmail.com',
+        To : 'hlzhong1130@gmail.com',
         From : "tooooby0807@gmail.com",
         Subject : "Grade Report",
         Body : JSON.stringify(grade, null, 2)
