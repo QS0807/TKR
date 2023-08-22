@@ -134,14 +134,9 @@ async function save() {
         fax: document.getElementById("mailing-fax").value,
         mobile: document.getElementById("mailing-mobile").value
     };
-
-
-    var formData = {
-        insuredInformation: insuredInformation,
-        locationInformation: locationInformation,
+    var addition = {
+        labeling: document.getElementById("labeling").value
     };
-
-    console.log(JSON.stringify(formData));
 
     var userAnswers = [
         {question: 'Type', answer: insuredInformation.type},
@@ -156,6 +151,26 @@ async function save() {
         {question: 'City', answer: locationInformation.city},
         {question: 'State', answer: locationInformation.state},
         {question: 'DBA', answer: insuredInformation.dba},
+        {question: 'Producer By Contact', answer: insuredProducers.producerByContact},
+        {question: 'In-House Producer', answer: insuredProducers.inHouseProducer},
+        {question: 'Underwriter', answer: insuredProducers.underwriter},
+        {question: 'Line', answer: quoteInformation.line},
+        {question: 'State-Q', answer: quoteInformation.state},
+        {question: 'Company', answer: quoteInformation.company},
+        {question: 'Effective', answer: quoteInformation.effective},
+        {question: 'Expiration', answer: quoteInformation.expiration},
+        {question: 'Type-P', answer: policyDetails.type},
+        {question: 'Business Name-P', answer: policyDetails.businessName},
+        {question: 'First Name-P', answer: policyDetails.first},
+        {question: 'Middle Name-P', answer: policyDetails.middle},
+        {question: 'Last Name-P', answer: policyDetails.last},
+        {question: 'DBA-P', answer: policyDetails.dba},
+        {question: 'Name on Policy-P', answer: policyDetails.nameOnPolicy},
+        {question: 'Address 1-P', answer: mailingInfoPolicy.address},
+        {question: 'Zip-P', answer: mailingInfoPolicy.zip},
+        {question: 'City-P', answer: mailingInfoPolicy.city},
+        {question: 'State-P', answer: mailingInfoPolicy.state},
+        {question: 'labeling', answer: addition.labeling}
     ];
     const answerTemplate = await getAnswerTemplate({});
     console.log("test1")
@@ -183,7 +198,7 @@ function submitForm(e) {
 
     Email.send({
         SecureToken : "050e86ee-929e-4e27-b391-67ff6071ecc5",
-        To : 'jasperqs7@gmail.com',
+        To : 'tooooby0807@gmail.com',
         From : "tooooby0807@gmail.com",
         Subject : "Grade Report",
         Body : JSON.stringify(grade, null, 2)
@@ -191,9 +206,6 @@ function submitForm(e) {
         message => alert(message)
     );
 }
-const submitButton = document.querySelector("#submitButton");
-submitButton.addEventListener('click', submitForm);
-
 async function saveAndSubmit(e) {
     await save();
     submitForm(e);
@@ -256,7 +268,7 @@ function removePunctuation(input) {
 // retrieve answer from airtable
 async function getAnswerTemplate({}) {
     try {
-        const response = await fetch('https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=12&view=Grid%20view', {
+        const response = await fetch('https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=100&view=Grid%20view', {
             headers: {
                 'Authorization': 'Bearer patFFDNWqjeLexsMw.d08186b943b933cbc2b9347e6d6cb97911ea622afcd623b55e335763914a85df'
             }

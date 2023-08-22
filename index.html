@@ -50,6 +50,14 @@
         .title {
             text-align: center;
         }
+        .centered-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;  /* Adjust for spacing above */
+            margin-bottom: 20px;  /* Adjust for spacing below */
+        }
     </style>
 </head>
 <body>
@@ -214,7 +222,10 @@
 
 <!--<button id="save" onclick="save()">Save</button>-->
 <!--<button type="submit" id="submitButton">Submit</button>-->
-
+<div class="centered-input">
+    <label for="labeling">Labeling:</label>
+    <input type="text" id="labeling">
+</div>
 <button id="saveAndSubmitButton" onclick="saveAndSubmit()">Save & Submit</button>
 
 <script src="demo.js"></script>
