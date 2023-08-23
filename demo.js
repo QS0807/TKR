@@ -24,13 +24,14 @@ async function search() {
 
 
     
-    const result = prefixSearch(response, insuredNameInput);
+    // const result = prefixSearch(response, insuredNameInput);
     
     // console.log(result);
 
     //added 8.23
-    const result2 = prefixSearch(response, mailingAddressInput);
-    const allresult = [result,result2]
+    const result1 = prefixSearch_InsuredName(response, insuredNameInput);
+    const result2 = prefixSearch_MailingAddress(response, mailingAddressInput);
+    const allresult = [result1,result2]
 
     console.log(allresult)
 
@@ -391,18 +392,38 @@ function normalizeString(str) {
     return str.replace(/[^\w\s]/g, '').toLowerCase();
 }
 
-function prefixSearch(data, query) {
+// edit 8.23
+
+// function prefixSearch(data, query) {
+//     const normalizedQuery = normalizeString(query);
+
+//     const matchingItems = data.records.filter((record) => {
+//         const mailingAddress = record.fields["Mailing Address"];
+//         const normalizedMailingAddress = normalizeString(mailingAddress);
+
+//         const insuredName = record.fields["Insured Names"];
+//         const normalizedInsuredName = normalizeString(insuredName);
+
+//         return (
+//             normalizedMailingAddress.startsWith(normalizedQuery) ||
+//             normalizedInsuredName.startsWith(normalizedQuery)
+//         );
+//     });
+
+//     const matchingInsuredNames = matchingItems.map((item) => item.fields["Insured Names"]);
+//     return matchingInsuredNames;
+// }
+
+function prefixSearch_InsuredName(data, query) {
     const normalizedQuery = normalizeString(query);
 
     const matchingItems = data.records.filter((record) => {
-        const mailingAddress = record.fields["Mailing Address"];
-        const normalizedMailingAddress = normalizeString(mailingAddress);
+       
 
         const insuredName = record.fields["Insured Names"];
         const normalizedInsuredName = normalizeString(insuredName);
 
         return (
-            normalizedMailingAddress.startsWith(normalizedQuery) ||
             normalizedInsuredName.startsWith(normalizedQuery)
         );
     });
@@ -410,3 +431,28 @@ function prefixSearch(data, query) {
     const matchingInsuredNames = matchingItems.map((item) => item.fields["Insured Names"]);
     return matchingInsuredNames;
 }
+
+function prefixSearch_MailingAddress(data, query) {
+    const normalizedQuery = normalizeString(query);
+
+    const matchingItems = data.records.filter((record) => {
+        const mailingAddress = record.fields["Mailing Address"];
+        const normalizedMailingAddress = normalizeString(mailingAddress);
+
+       
+        return (
+            normalizedMailingAddress.startsWith(normalizedQuery) 
+           
+        );
+    });
+
+    const matchingMailingAddress = matchingItems.map((item) => item.fields["Mailing Address"]);
+    return matchingMailingAddress;
+}
+
+
+
+
+
+
+
