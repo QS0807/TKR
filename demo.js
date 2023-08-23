@@ -26,14 +26,16 @@ async function search() {
 
     insuredNameInput = insuredNameInput ? removePunctuation(insuredNameInput) : null;
     mailingAddressInput = mailingAddressInput ? removePunctuation(mailingAddressInput) : null;
-    
+
+    let result1 = []; 
+    let result2 = [];
     let allresult = [];
     
     if(insuredNameInput){
-        const result1 = prefixSearch_InsuredName(response, insuredNameInput);
+        result1 = prefixSearch_InsuredName(response, insuredNameInput);
     }
     if(mailingAddressInput){
-        const result2 = prefixSearch_MailingAddress(response, mailingAddressInput);
+        result2 = prefixSearch_MailingAddress(response, mailingAddressInput);
     }
    
     allresult = [result1,result2]
