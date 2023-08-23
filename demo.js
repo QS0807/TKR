@@ -19,7 +19,7 @@ async function search() {
     //8.22 start
     if(insuredNameInput !== null){
         const result = prefixSearch(response, insuredNameInput);
-    }else(mailingAddressInput !== null){
+    }else if(mailingAddressInput !== null){
         const result = prefixSearch(response, mailingAddressInput);
     }
     //end 
