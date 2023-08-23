@@ -4,7 +4,9 @@ async function search() {
     let mailingAddressInput = document.getElementById('mailingAddress').value;
     
 
-    const response = await getSearch({});
+    //const response = await getSearch({});
+    
+    const response = await getSearch(2);
 
     
 
@@ -219,10 +221,45 @@ async function saveAndSubmit(e) {
     await save();
     submitForm(e);
 }
+
+
 // AirTable API
-async function getSearch({}) {
+// async function getSearch({}) {
+//     try {
+//         const response = await fetch('https://api.airtable.com/v0/appyIGobg4qaEqWWP/Table%201?maxRecords=100&view=Grid%20view', {
+//             headers: {
+//                 'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
+//             }
+//         });
+
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! status: ${response.status}`);
+//         } else {
+//             return await response.json();
+//         }
+//     } catch(error) {
+//         console.log(`Fetch Error: ${error}`);
+//     }
+// }
+
+// new getSearch 8.23
+
+async function getSearch(number) {
+
+    const urls = [
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=100&view=Grid%20view',
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%202?maxRecords=100&view=Grid%20view',
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%203?maxRecords=100&view=Grid%20view',
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%204?maxRecords=100&view=Grid%20view',
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%205?maxRecords=100&view=Grid%20view'
+    ];
     try {
-        const response = await fetch('https://api.airtable.com/v0/appyIGobg4qaEqWWP/Table%201?maxRecords=100&view=Grid%20view', {
+        if (number < 1 || number > 100) {
+            throw new Error('Number should be between 1 and 10');
+        }
+
+        const urlIndex = number - 1; // Adjust for 0-based indexing
+        const response = await fetch(urls[urlIndex], {
             headers: {
                 'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
             }
@@ -237,6 +274,8 @@ async function getSearch({}) {
         console.log(`Fetch Error: ${error}`);
     }
 }
+
+// new getSearch end 8.23
 
 
 
