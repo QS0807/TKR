@@ -27,7 +27,7 @@ async function search() {
     insuredNameInput = insuredNameInput ? removePunctuation(insuredNameInput) : null;
     mailingAddressInput = mailingAddressInput ? removePunctuation(mailingAddressInput) : null;
     
-    let allresult[];
+    let allresult = [];
     
     if(insuredNameInput){
         const result1 = prefixSearch_InsuredName(response, insuredNameInput);
