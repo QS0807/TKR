@@ -6,7 +6,7 @@ async function search() {
 
     //const response = await getSearch({});
     
-    const response = await getSearch(2);
+    const response = await getSearch(3);
 
     
 
