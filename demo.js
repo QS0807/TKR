@@ -435,8 +435,17 @@ function prefixSearch_InsuredName(data, query) {
         );
     });
 
-    const matchingInsuredNames = matchingItems.map((item) => item.fields["Insured Names"]);
-    return matchingInsuredNames;
+    // const matchingInsuredNames = matchingItems.map((item) => item.fields["Insured Names"]);
+    // return matchingInsuredNames;
+
+    const matchingInsuredInfo = matchingItems.map((item) => {
+        return {
+            insuredName: item.fields["Insured Names"],
+            mailingAddress: item.fields["Mailing Address"]
+        };
+    });
+
+    return matchingInsuredInfo;
 }
 
 function prefixSearch_MailingAddress(data, query) {
@@ -453,9 +462,19 @@ function prefixSearch_MailingAddress(data, query) {
         );
     });
 
-    const matchingMailingAddress = matchingItems.map((item) => item.fields["Mailing Address"]);
-    return matchingMailingAddress;
+    // const matchingMailingAddress = matchingItems.map((item) => item.fields["Mailing Address"]);
+    // return matchingMailingAddress;
+
+    const matchingInsuredInfo = matchingItems.map((item) => {
+        return {
+            insuredName: item.fields["Insured Names"],
+            mailingAddress: item.fields["Mailing Address"]
+        };
+    });
+
+    return matchingInsuredInfo;
 }
+
 
 
 
