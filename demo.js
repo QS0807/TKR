@@ -2,6 +2,8 @@
 async function search() {
     let insuredNameInput = document.getElementById('insuredName').value;
     let mailingAddressInput = document.getElementById('mailingAddress').value;
+    console.log(insuredNameInput)
+    console.log(mailingAddressInput)
 
     const response = await getSearch({});
 
