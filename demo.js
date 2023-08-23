@@ -6,22 +6,16 @@ async function search() {
 
     const response = await getSearch({});
     
-   
-
-    
 
     console.log(response)
 
     console.log(insuredNameInput)
     
-    // added on 7.26
-    insuredNameInput = removePunctuation(insuredNameInput);
-    mailingAddressInput = removePunctuation(mailingAddressInput);
+    
+    // insuredNameInput = removePunctuation(insuredNameInput);
+    // mailingAddressInput = removePunctuation(mailingAddressInput);
 
    
-
- 
-
 
     
     // const result = prefixSearch(response, insuredNameInput);
@@ -29,6 +23,10 @@ async function search() {
     // console.log(result);
 
     //added 8.23
+
+    insuredNameInput = insuredNameInput ? removePunctuation(insuredNameInput) : null;
+    mailingAddressInput = mailingAddressInput ? removePunctuation(mailingAddressInput) : null;
+    
     let allresult[];
     
     if(insuredNameInput){
