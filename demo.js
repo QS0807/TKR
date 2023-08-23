@@ -29,9 +29,16 @@ async function search() {
     // console.log(result);
 
     //added 8.23
-    const result1 = prefixSearch_InsuredName(response, insuredNameInput);
-    const result2 = prefixSearch_MailingAddress(response, mailingAddressInput);
-    const allresult = [result1,result2]
+    let allresult[];
+    
+    if(insuredNameInput){
+        const result1 = prefixSearch_InsuredName(response, insuredNameInput);
+    }
+    if(mailingAddressInput){
+        const result2 = prefixSearch_MailingAddress(response, mailingAddressInput);
+    }
+   
+    allresult = [result1,result2]
 
     console.log(allresult)
 
