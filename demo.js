@@ -2,8 +2,7 @@
 async function search() {
     let insuredNameInput = document.getElementById('insuredName').value;
     let mailingAddressInput = document.getElementById('mailingAddress').value;
-    console.log(insuredNameInput)
-    console.log(mailingAddressInput)
+    
 
     const response = await getSearch({});
 
@@ -16,9 +15,20 @@ async function search() {
     // added on 7.26
     insuredNameInput = removePunctuation(insuredNameInput);
     mailingAddressInput = removePunctuation(mailingAddressInput);
+
+    //8.22 start
+    if(insuredNameInput != null){
+        const result = prefixSearch(response, insuredNameInput);
+    }else if(mailingAddressInput != null){
+        const result = prefixSearch(response, mailingAddressInput);
+    }
+    //end 
+
+
+    
+    //const result = prefixSearch(response, insuredNameInput);
     
     
-    const result = prefixSearch(response, insuredNameInput);
     console.log(result);
 
     const resultsDiv = document.getElementById('searchResults');
