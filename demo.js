@@ -18,15 +18,17 @@ async function search() {
 
     //8.22 start
     if(insuredNameInput !== null){
-        const result = prefixSearch(response, insuredNameInput);
-    }else{
-        const result = prefixSearch(response, mailingAddressInput);
+        const u_input = insuredNameInput
+    }else if(mailingAddressInput !== null){
+        const u_input = mailingAddressInput
     }
     //end 
 
+     console.log(u_input);
+
 
     
-    //const result = prefixSearch(response, insuredNameInput);
+    const result = prefixSearch(response, u_input);
     
     
     console.log(result);
