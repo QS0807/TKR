@@ -26,8 +26,17 @@ async function search() {
     
     const result = prefixSearch(response, insuredNameInput);
     
+    // console.log(result);
+
+    //added 8.23
+    const result2 = prefixSearch(response, mailingAddressInput);
+    const allresult = [result,result2]
+
+    console.log(allresult)
+
+    //end 8.23
+
     
-    console.log(result);
 
     const resultsDiv = document.getElementById('searchResults');
     resultsDiv.innerHTML = ''; // clear the current results
