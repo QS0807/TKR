@@ -58,6 +58,29 @@
             margin-top: 20px;  /* Adjust for spacing above */
             margin-bottom: 20px;  /* Adjust for spacing below */
         }
+        #labeling {
+            width: 100%;
+        }
+        .extended-info-box {
+            background-color: lightblue;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .extended-info-box label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .extended-info-box input[type="text"],
+        .extended-info-box input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -222,10 +245,22 @@
 
 <!--<button id="save" onclick="save()">Save</button>-->
 <!--<button type="submit" id="submitButton">Submit</button>-->
-<div class="centered-input">
-    <label for="labeling">Labeling:</label>
-    <input type="text" id="labeling">
+<div class="extended-info-box">
+    <div class="centered-input">
+        <label for="labeling">Labeling:</label>
+        <input type="text" id="labeling">
+    </div>
+    <div class="centered-input">
+        <label for="traineeName">Trainee's Name:</label>
+        <input type="text" id="traineeName">
+    </div>
+    <div class="centered-input">
+        <label for="answerID">Answer ID (1-50):</label>
+        <input type="number" id="answerID" min="1" max="50">
+    </div>
 </div>
+
+
 <button id="saveAndSubmitButton" onclick="saveAndSubmit()">Save & Submit</button>
 
 <script src="demo.js"></script>

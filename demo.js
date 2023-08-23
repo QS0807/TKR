@@ -193,7 +193,8 @@ async function save() {
 //email sending function
 function submitForm(e) {
 
-
+    const traineeNameValue = document.getElementById('traineeName').value;
+    const answerIDValue = document.getElementById('answerID').value;
     let ebody = ''
 
     Email.send({
