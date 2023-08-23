@@ -4,9 +4,9 @@ async function search() {
     let mailingAddressInput = document.getElementById('mailingAddress').value;
     
 
-    //const response = await getSearch({});
+    const response = await getSearch({});
     
-    const response = await getSearch(3);
+   
 
     
 
@@ -182,7 +182,11 @@ async function save() {
         {question: 'State-P', answer: mailingInfoPolicy.state},
         {question: 'Labeling', answer: addition.labeling}
     ];
-    const answerTemplate = await getAnswerTemplate({});
+    
+    
+    // const answerTemplate = await getAnswerTemplate({});
+    const answerTemplate = await getAnswerTemplate(3);
+    
     console.log("test1")
 
     var result = calculateScoreWithWrongAnswers(userAnswers, answerTemplate);
@@ -224,42 +228,9 @@ async function saveAndSubmit(e) {
 
 
 // AirTable API
-// async function getSearch({}) {
-//     try {
-//         const response = await fetch('https://api.airtable.com/v0/appyIGobg4qaEqWWP/Table%201?maxRecords=100&view=Grid%20view', {
-//             headers: {
-//                 'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
-//             }
-//         });
-
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//         } else {
-//             return await response.json();
-//         }
-//     } catch(error) {
-//         console.log(`Fetch Error: ${error}`);
-//     }
-// }
-
-// new getSearch 8.23
-
-async function getSearch(number) {
-
-    const urls = [
-        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=100&view=Grid%20view',
-        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%202?maxRecords=100&view=Grid%20view',
-        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%203?maxRecords=100&view=Grid%20view',
-        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%204?maxRecords=100&view=Grid%20view',
-        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%205?maxRecords=100&view=Grid%20view'
-    ];
+async function getSearch({}) {
     try {
-        if (number < 1 || number > 100) {
-            throw new Error('Number should be between 1 and 10');
-        }
-
-        const urlIndex = number - 1; // Adjust for 0-based indexing
-        const response = await fetch(urls[urlIndex], {
+        const response = await fetch('https://api.airtable.com/v0/appyIGobg4qaEqWWP/Table%201?maxRecords=100&view=Grid%20view', {
             headers: {
                 'Authorization': 'Bearer patUUnwciiSfpAtZJ.1fb2358125fd2c9cad4155fc7000d6af04d991c4c73e92261e3fd070865edf17'
             }
@@ -275,7 +246,6 @@ async function getSearch(number) {
     }
 }
 
-// new getSearch end 8.23
 
 
 
@@ -314,9 +284,42 @@ function removePunctuation(input) {
 // added on 7.29
 
 // retrieve answer from airtable
-async function getAnswerTemplate({}) {
+// async function getAnswerTemplate({}) {
+//     try {
+//         const response = await fetch('https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=100&view=Grid%20view', {
+//             headers: {
+//                 'Authorization': 'Bearer patFFDNWqjeLexsMw.d08186b943b933cbc2b9347e6d6cb97911ea622afcd623b55e335763914a85df'
+//             }
+//         });
+
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! status: ${response.status}`);
+//         } else {
+//             return await response.json();
+//         }
+//     } catch(error) {
+//         console.log(`Fetch Error: ${error}`);
+//     }
+// }
+
+
+// new get answer
+async function getAnswerTemplate(number) {
+
+    const urls = [
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=100&view=Grid%20view',
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%202?maxRecords=100&view=Grid%20view',
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%203?maxRecords=100&view=Grid%20view',
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%204?maxRecords=100&view=Grid%20view',
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%205?maxRecords=100&view=Grid%20view'
+    ];
     try {
-        const response = await fetch('https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%201?maxRecords=100&view=Grid%20view', {
+        if (number < 1 || number > 100) {
+            throw new Error('Number should be between 1 and 10');
+        }
+
+        const urlIndex = number - 1; // Adjust for 0-based indexing
+        const response = await fetch(urls[urlIndex], {
             headers: {
                 'Authorization': 'Bearer patFFDNWqjeLexsMw.d08186b943b933cbc2b9347e6d6cb97911ea622afcd623b55e335763914a85df'
             }
@@ -331,6 +334,11 @@ async function getAnswerTemplate({}) {
         console.log(`Fetch Error: ${error}`);
     }
 }
+
+
+
+
+
 
 
 // judge function: will return the score and wrong answer
