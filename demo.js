@@ -16,19 +16,13 @@ async function search() {
     insuredNameInput = removePunctuation(insuredNameInput);
     mailingAddressInput = removePunctuation(mailingAddressInput);
 
-    //8.22 start
-    if(insuredNameInput !== null){
-        const u_input = insuredNameInput
-    }else if(mailingAddressInput !== null){
-        const u_input = mailingAddressInput
-    }
-    //end 
+   
 
-     console.log(u_input);
+ 
 
 
     
-    const result = prefixSearch(response, u_input);
+    const result = prefixSearch(response, insuredNameInput);
     
     
     console.log(result);
