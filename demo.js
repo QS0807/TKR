@@ -244,7 +244,8 @@ async function save() {
 
 
 
-//8_24
+//8_24 start 
+
 function submitForm(e) {
     const trainerEmail = document.getElementById('trainerEmail').value;
     const traineeNameValue = document.getElementById('traineeName').value;
@@ -305,7 +306,7 @@ function submitForm(e) {
         Attachments: [
             {
                 name: "grade_report.html",
-                data: ebody
+                data: "data:text/html;charset=utf-8;base64," + btoa(ebody)
             }
         ]
     }).then(
@@ -317,7 +318,6 @@ async function saveAndSubmit(e) {
     await save();
     submitForm(e);
 }
-
 
 //8_24 end
 
