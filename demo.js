@@ -330,8 +330,8 @@ async function getAnswerTemplate(number) {
         'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%205?maxRecords=100&view=Grid%20view'
     ];
     try {
-        if (number < 1 || number > 100) {
-            throw new Error('Number should be between 1 and 100');
+        if (number < 1 || number > 50) {
+            throw new Error('Number should be between 1 and 50');
         }
 
         const urlIndex = number - 1; // Adjust for 0-based indexing
