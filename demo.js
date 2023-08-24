@@ -441,7 +441,9 @@ function prefixSearch_InsuredName(data, query) {
     const matchingInsuredInfo = matchingItems.map((item) => {
         return {
             insuredName: item.fields["Insured Names"],
-            mailingAddress: item.fields["Mailing Address"]
+            mailingAddress: item.fields["Mailing Address"],
+            location:item.fields["Location"],
+            line:item.fields["Line"]
         };
     });
 
@@ -468,7 +470,9 @@ function prefixSearch_MailingAddress(data, query) {
     const matchingInsuredInfo = matchingItems.map((item) => {
         return {
             insuredName: item.fields["Insured Names"],
-            mailingAddress: item.fields["Mailing Address"]
+            mailingAddress: item.fields["Mailing Address"],
+            location:item.fields["Location"],
+            line:item.fields["Line"]
         };
     });
 
