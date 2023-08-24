@@ -202,8 +202,10 @@ async function save() {
     
     
     // const answerTemplate = await getAnswerTemplate({});
+    
+    
     const answerTemplate = await getAnswerTemplate(3);
-    //number here should be user's input
+    //number here:3 should be user's input !!!!!!!!!!!!!!!!!
     
     console.log("test1")
 
@@ -230,6 +232,7 @@ function submitForm(e) {
     let ebody = ''
 
     Email.send({
+        //remember to send trainee's name 
         SecureToken : "050e86ee-929e-4e27-b391-67ff6071ecc5",
         To : 'hlzhong1130@gmail.com',
         From : "tooooby0807@gmail.com",
