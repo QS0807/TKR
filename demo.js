@@ -254,6 +254,9 @@ function submitForm(e) {
 
     const gradeReport = JSON.parse(JSON.stringify(grade, null, 2)); // Clone the grade object for formatting
 
+    // Calculate the total score
+    const totalScore = gradeReport.score || 0;
+
     let ebody = `
         <html>
         <head>
@@ -274,20 +277,25 @@ function submitForm(e) {
                 th {
                     background-color: #f2f2f2;
                 }
+                /* Narrower first column */
+                .narrow-column {
+                    width: 20%;
+                }
             </style>
         </head>
         <body>
             <h1>Grade Report for ${traineeNameValue}</h1>
+            <p>Score: ${totalScore}</p>
             <p>Below is the grade report details:</p>
             <table>
                 <tr>
-                    <th>Question</th>
+                    <th class="narrow-column">Question</th>
                     <th>User Answer</th>
                     <th>Correct Answer</th>
                 </tr>
                 ${gradeReport.wrongAnswers.map(answer => `
                     <tr>
-                        <td>${answer.question}</td>
+                        <td class="narrow-column">${answer.question}</td>
                         <td>${answer.userAnswer}</td>
                         <td>${answer.correctAnswer}</td>
                     </tr>
@@ -319,6 +327,7 @@ async function saveAndSubmit(e) {
     submitForm(e);
 }
 
+//test refresh
 //8_24 end
 
 
