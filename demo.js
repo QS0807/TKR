@@ -333,7 +333,7 @@ async function getAnswerTemplate(number) {
     ];
     try {
         if (number < 1 || number > 100) {
-            throw new Error('Number should be between 1 and 10');
+            throw new Error('Number should be between 1 and 100');
         }
 
         const urlIndex = number - 1; // Adjust for 0-based indexing
