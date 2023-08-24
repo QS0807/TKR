@@ -2,65 +2,62 @@
 async function search() {
     let insuredNameInput = document.getElementById('insuredName').value;
     let mailingAddressInput = document.getElementById('mailingAddress').value;
-    
 
     const response = await getSearch({});
-    
 
-    console.log(response)
-
-    console.log(insuredNameInput)
-    
-    
-    // insuredNameInput = removePunctuation(insuredNameInput);
-    // mailingAddressInput = removePunctuation(mailingAddressInput);
-
-   
-
-    
-    // const result = prefixSearch(response, insuredNameInput);
-    
-    // console.log(result);
-
-    //added 8.23
+    console.log(response);
+    console.log(insuredNameInput);
 
     insuredNameInput = insuredNameInput ? removePunctuation(insuredNameInput) : null;
     mailingAddressInput = mailingAddressInput ? removePunctuation(mailingAddressInput) : null;
 
-    let result1 = []; 
+    let result1 = [];
     let result2 = [];
     let allresult = [];
-    
-    if(insuredNameInput){
+
+    if (insuredNameInput) {
         result1 = prefixSearch_InsuredName(response, insuredNameInput);
     }
-    if(mailingAddressInput){
+    if (mailingAddressInput) {
         result2 = prefixSearch_MailingAddress(response, mailingAddressInput);
     }
-   
-    allresult = [result1,result2]
 
-    console.log(allresult)
+    allresult = [result1, result2];
 
-    //end 8.23
-
-    
+    console.log(allresult);
 
     const resultsDiv = document.getElementById('searchResults');
     resultsDiv.innerHTML = ''; // clear the current results
 
-    // Iterate over the results and add each one to the resultsDiv
-    result.forEach(item => {
-        // Create a new div for the item and set its textContent to the item
-        const itemDiv = document.createElement('div');
-        itemDiv.textContent = item;
-        itemDiv.classList.add('result-item');
+    allresult.forEach(result => {
+        result.forEach(item => {
+            // Create a div for each property of the item and set its textContent to the item's value
+            const insuredNameDiv = document.createElement('div');
+            insuredNameDiv.textContent = 'Insured Name: ' + item.insuredName;
 
-        // Append the itemDiv to the resultsDiv
-        resultsDiv.appendChild(itemDiv);
+            const mailingAddressDiv = document.createElement('div');
+            mailingAddressDiv.textContent = 'Mailing Address: ' + item.mailingAddress;
+
+            const locationDiv = document.createElement('div');
+            locationDiv.textContent = 'Location: ' + item.location;
+
+            const lineDiv = document.createElement('div');
+            lineDiv.textContent = 'Line: ' + item.line;
+
+            const itemContainer = document.createElement('div');
+            itemContainer.classList.add('result-item');
+
+            itemContainer.appendChild(insuredNameDiv);
+            itemContainer.appendChild(mailingAddressDiv);
+            itemContainer.appendChild(locationDiv);
+            itemContainer.appendChild(lineDiv);
+
+            // Append the itemContainer to the resultsDiv
+            resultsDiv.appendChild(itemContainer);
+        });
     });
-
 }
+
 // async function judge(){
     
     
@@ -202,9 +199,9 @@ async function save() {
     
     
     // const answerTemplate = await getAnswerTemplate({});
-    
-    
-    const answerTemplate = await getAnswerTemplate(3);
+
+    const answerIDValue = document.getElementById('answerID').value;
+    const answerTemplate = await getAnswerTemplate(answerIDValue);
     //number here:3 should be user's input !!!!!!!!!!!!!!!!!
     
     console.log("test1")
@@ -226,17 +223,15 @@ async function save() {
 
 //email sending function
 function submitForm(e) {
-
+    const trainerEmail = document.getElementById('trainerEmail').value;
     const traineeNameValue = document.getElementById('traineeName').value;
-    const answerIDValue = document.getElementById('answerID').value;
-    let ebody = ''
-
+    let ebody = '';
+    const defaultEmail = trainerEmail ? trainerEmail : 'Trainee18@turnkey-re.com';
     Email.send({
-        //remember to send trainee's name 
         SecureToken : "050e86ee-929e-4e27-b391-67ff6071ecc5",
-        To : 'hlzhong1130@gmail.com',
+        To : trainerEmail, // Using trainer's email
         From : "tooooby0807@gmail.com",
-        Subject : "Grade Report",
+        Subject : `Grade Report for ${traineeNameValue}`, // Adding trainee's name to the subject
         Body : JSON.stringify(grade, null, 2)
     }).then(
         message => alert(message)
