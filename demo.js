@@ -222,25 +222,105 @@ async function save() {
 }
 
 //email sending function
+// function submitForm(e) {
+//     const trainerEmail = document.getElementById('trainerEmail').value;
+//     const traineeNameValue = document.getElementById('traineeName').value;
+//     let ebody = '';
+//     const defaultEmail = trainerEmail ? trainerEmail : 'Trainee18@turnkey-re.com';
+//     Email.send({
+//         SecureToken : "050e86ee-929e-4e27-b391-67ff6071ecc5",
+//         To : trainerEmail, // Using trainer's email
+//         From : "tooooby0807@gmail.com",
+//         Subject : `Grade Report for ${traineeNameValue}`, // Adding trainee's name to the subject
+//         Body : JSON.stringify(grade, null, 2)
+//     }).then(
+//         message => alert(message)
+//     );
+// }
+// async function saveAndSubmit(e) {
+//     await save();
+//     submitForm(e);
+// }
+
+
+
+//8_24
 function submitForm(e) {
     const trainerEmail = document.getElementById('trainerEmail').value;
     const traineeNameValue = document.getElementById('traineeName').value;
-    let ebody = '';
+
     const defaultEmail = trainerEmail ? trainerEmail : 'Trainee18@turnkey-re.com';
+
+    const gradeReport = JSON.parse(JSON.stringify(grade, null, 2)); // Clone the grade object for formatting
+
+    let ebody = `
+        <html>
+        <head>
+            <style>
+                /* Add some basic styling for better email appearance */
+                body {
+                    font-family: Arial, sans-serif;
+                }
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                th, td {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
+                th {
+                    background-color: #f2f2f2;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Grade Report for ${traineeNameValue}</h1>
+            <p>Below is the grade report details:</p>
+            <table>
+                <tr>
+                    <th>Question</th>
+                    <th>User Answer</th>
+                    <th>Correct Answer</th>
+                </tr>
+                ${gradeReport.wrongAnswers.map(answer => `
+                    <tr>
+                        <td>${answer.question}</td>
+                        <td>${answer.userAnswer}</td>
+                        <td>${answer.correctAnswer}</td>
+                    </tr>
+                `).join('')}
+            </table>
+        </body>
+        </html>
+    `;
+
     Email.send({
-        SecureToken : "050e86ee-929e-4e27-b391-67ff6071ecc5",
-        To : trainerEmail, // Using trainer's email
-        From : "tooooby0807@gmail.com",
-        Subject : `Grade Report for ${traineeNameValue}`, // Adding trainee's name to the subject
-        Body : JSON.stringify(grade, null, 2)
+        SecureToken: "050e86ee-929e-4e27-b391-67ff6071ecc5",
+        To: trainerEmail,
+        From: "tooooby0807@gmail.com",
+        Subject: `Grade Report for ${traineeNameValue}`,
+        Body: ebody,
+        Attachments: [
+            {
+                name: "grade_report.html",
+                data: ebody
+            }
+        ]
     }).then(
         message => alert(message)
     );
 }
+
 async function saveAndSubmit(e) {
     await save();
     submitForm(e);
 }
+
+
+//8_24 end
+
 
 
 // AirTable API
