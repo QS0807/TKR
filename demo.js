@@ -416,7 +416,8 @@ async function getAnswerTemplate(number) {
         'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%202?maxRecords=100&view=Grid%20view',
         'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%203?maxRecords=100&view=Grid%20view',
         'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%204?maxRecords=100&view=Grid%20view',
-        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%205?maxRecords=100&view=Grid%20view'
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%205?maxRecords=100&view=Grid%20view',
+        'https://api.airtable.com/v0/appMxnw2oAkk2GESD/Table%206?maxRecords=100&view=Grid%20view'
     ];
     try {
         if (number < 1 || number > 50) {
