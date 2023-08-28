@@ -483,8 +483,8 @@ function calculateScoreWithWrongAnswers(userAnswers, answerTemplate) {
 //Search function 8_2
 
 function normalizeString(str) {
-    console.log(str)
-    console.log(typeof str)
+    // console.log(str)
+    // console.log(typeof str)
     return str.replace(/[^\w\s]/g, '').toLowerCase()
 }
 
