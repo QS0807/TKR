@@ -483,7 +483,8 @@ function calculateScoreWithWrongAnswers(userAnswers, answerTemplate) {
 //Search function 8_2
 
 function normalizeString(str) {
-    return str.replace(/[^\w\s]/g, '').toLowerCase();
+    const string = str;
+    return string.replace(/[^\w\s]/g, '').toLowerCase();
     // return str.replace(/[^\w\s]/g, '').toLowerCase();
 }
 
